@@ -1,0 +1,18 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>{{user.username}} Chat</title>
+</head>
+
+<body>
+    <button>
+        <a href="{% url 'loginUser'%}" style="text-decoration: none;">Login</a>
+    </button>
+    <button>
+        <a href="{% url 'newUser'%}" style="text-decoration: none;">SignUp</a>
+    </button>
+</body>
+
+</html>

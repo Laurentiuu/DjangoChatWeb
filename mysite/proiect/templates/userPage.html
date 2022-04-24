@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>UserPage</title>
+    {% load static %}
+</head>
+
+<body>
+    <center>
+        <h1>Pagina lui {{user.username}}</h1>
+        <hr>
+        <form action="joinRoom" method="POST">
+            {% csrf_token %}
+            <select name="user">
+                <option disabled="true" selected>-- Users --</option>
+                {% for result in userList%}
+                {% if not result.username == 'admin'%}
+                {% if not result.username == user.username %}
+                <option>{{result.username}}</option>
+                {% endif %}
+                {% endif %}
+                
+                {%endfor%}
+            </select>
+            <input type="submit" value="JoinRoom">
+            <!-- <button>
+            <a href="{% url 'userPage'%}" style="text-decoration: none;">JoinRoom</a>
+        </button> -->
+        </form>
+    </center>
+    <form method="POST" action="{% url 'logoutPage'%}">
+        {% csrf_token %}
+        <input type="submit" value="Logout">
+        <br>
+    </form>
+
+</body>
+
+</html>

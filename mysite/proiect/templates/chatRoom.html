@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>{{sender}} Chat</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <center>
+        <h1>{{sender}} Vorbeste cu {{receiver}}</h1>
+        <hr>    
+
+        <div class="container" style="background-color: grey; margin-left: 10%; margin-right: 10%;">
+            
+            <div style="float: left; width: 45%;">
+                <h2>Mesaje primite</h2>
+
+                {% for key, value in receivedMessages.items%}
+                <div class="container" >
+                    <img alt="logo" src="{% static 'images/logo.png' %}" />
+                    <p>{{key}}</p>
+                    <span class="time-right">{{value}}</span>
+                </div>
+                {%endfor%} 
+            </div>
+            
+            <div style="float: right;width: 45%;">
+                <h2>Mesaje trimise</h2>
+                {% for key, value in sentMessages.items%}
+                <div class="container darker" >
+                    <img alt="logo" src="{% static 'images/logo.png' %}" class="right" style="width:100%;">
+                    <p>{{key}}</p>
+                    <span class="time-left">{{value}}</span>
+                </div>
+                {%endfor%} 
+            </div>
+        </div>
+        <hr>
+        <form action="send" method="POST">
+            {% csrf_token %}
+            <div style="margin-left: 10%; margin-right: 10%;">
+                <input class="button button5" type="submit" value="Send" style="float: right" />
+                <div style="overflow: hidden; padding-right: .5em; margin-top: 10px">
+                    <input type="hidden" name="receiver" id="receiver" value="{{receiver}}"/>
+                    <input type="text" name="message" id="message" class="sentMessage" style="width: 100%;" />
+                </div>
+        </form>
+
+
+
+        </div>
+    </center>
+    <form method="POST" action="{% url 'logoutPage'%}">
+        {% csrf_token %}
+        <input type="submit" value="Logout">
+        <br>
+    </form>
+    <br>
+    <form method="POST" action="{% url 'userPage'%}">
+        {% csrf_token %}
+        <input type="submit" value="Back">
+        <br>
+    </form>
+</body>
+</html>

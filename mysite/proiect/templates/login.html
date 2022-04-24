@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+</head>
+<body>
+    <center>
+        <form method="POST">
+            {% csrf_token %} 
+        <h1>Logare Utilizator</h1>
+        <hr>
+
+        <table border="1">
+        {{form}}
+        </table>
+        <input type="submit" value="Login">
+        <button>
+            <a href="{% url 'indexPage'%}" style="text-decoration: none;">Home Page</a>
+        </button>
+        <h1 style="color: red;">{{error}}</h1>
+        </form> 
+    </center>
+</body>
+
+</html>

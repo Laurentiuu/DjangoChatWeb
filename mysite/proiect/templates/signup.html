@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Utilizator Nou</title>
+</head>
+<body>
+    <center>
+        <h1>User Nou</h1>
+        <hr>
+        <form method="POST">
+            {% csrf_token %}
+            <table border="1" bordercolor="gray">
+            {{form}}
+            </table>
+            <input type="submit" value="Creare User"> <a href="{% url 'loginUser'%}">Login</a>
+            <h1 style="color: red;">{{error}}</h1>
+            <h1 style="color: green;">{{info}}</h1>
+        </form>
+    </center>
+</body>
+
+</html>
